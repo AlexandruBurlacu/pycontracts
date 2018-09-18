@@ -2,6 +2,28 @@ from __future__ import print_function
 
 # from pycontracts import Contract
 
+class PreconditionViolationError(Exception):
+
+    def __init__(self, predicate, args, kwargs, msg):
+        self.message = msg
+        self.args = args
+        self.kwargs = kwargs
+        self.predicate = predicate
+
+    def __str__(self):
+        return "{}. [Inp]: {}, {}".format(self.message, self.args, self.kwargs)
+
+class PostconditionViolationError(Exception):
+
+    def __init__(self, predicate, ret_vals, msg):
+        self.message = msg
+        self.ret_vals = ret_vals
+        self.predicate = predicate
+
+    def __str__(self):
+        return "{}. [Out]: {}".format(self.message, self.ret_vals)
+
+
 class Contract(object):
 
     @classmethod
@@ -9,7 +31,7 @@ class Contract(object):
         def wrapper(func):            
             def __inner(*args, **kwargs):
                 for condition, predicate in conditions_dict.items():
-                    assert predicate(args, kwargs), condition
+                    raise PreconditionViolationError(predicate, args, kwargs, condition)
                 return func(*args, **kwargs)
             return __inner
         return wrapper
@@ -20,7 +42,7 @@ class Contract(object):
             def __inner(*args, **kwargs):
                 ret = func(*args, **kwargs)
                 for condition, predicate in conditions_dict.items():
-                    assert predicate(ret), condition
+                    raise PostconditionViolationError(predicate, ret, condition)
                 return ret
             return __inner
         return wrapper
