@@ -1,13 +1,17 @@
-from exceptions import PreconditionViolationError, PostconditionViolationError
+from .exceptions import PreconditionViolationError, PostconditionViolationError
 
 class Contract(object):
 
+    tests_enabled = True
+
     @classmethod
     def pre_conditions(cls, conditions_dict):
-        def wrapper(func):            
+        def wrapper(func):
             def __inner(*args, **kwargs):
-                for condition, predicate in conditions_dict.items():
-                    raise PreconditionViolationError(predicate, args, kwargs, condition)
+                if cls.tests_enabled:
+                    for condition, predicate in conditions_dict.items():
+                        if not predicate(args, kwargs):
+                            raise PreconditionViolationError(args, kwargs, condition)
                 return func(*args, **kwargs)
             return __inner
         return wrapper
@@ -17,8 +21,18 @@ class Contract(object):
         def wrapper(func):
             def __inner(*args, **kwargs):
                 ret = func(*args, **kwargs)
-                for condition, predicate in conditions_dict.items():
-                    raise PostconditionViolationError(predicate, ret, condition)
+                if cls.tests_enabled:
+                    for condition, predicate in conditions_dict.items():
+                        if not predicate(ret):
+                            raise PostconditionViolationError(ret, condition)
                 return ret
             return __inner
         return wrapper
+
+    @classmethod
+    def disable_all_tests(cls):
+        cls.tests_enabled = False
+
+    @classmethod
+    def enable_all_tests(cls):
+        cls.tests_enabled = True
