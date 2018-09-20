@@ -8,7 +8,6 @@ It provides a simple, yet powerful interface, based on Python decorators and mak
 This library makes it easy to specify contracts, providing defensive programming/Design by Contracts capabilities.
 
 ### Roadmap
-- Add Apache2 License
 - Add tests and examples
 - Make it installable (add `setup.py` file)
 - Publish it on PyPI
