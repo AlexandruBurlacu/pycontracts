@@ -7,8 +7,9 @@ It provides a simple, yet powerful interface, based on Python decorators and mak
 
 This library makes it easy to specify contracts, providing defensive programming/Design by Contracts capabilities.
 
+It has absolutely no dependencies other than Python's standard library, so it is fully compatible with both Python 3.x and 2.x, and even PyPy.
+
 ### Roadmap
-- Add tests and examples
 - Make it installable (add `setup.py` file)
 - Publish it on PyPI
 - Add Travis integration and code coverage
