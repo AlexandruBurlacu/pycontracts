@@ -1,0 +1,18 @@
+language: python
+python:
+  - "2.7"
+  - "3.4"
+  - "3.7"
+# pypy versions
+  - "pypy2.7"
+  - "pypy3.5"
+
+install:
+  - python setup.py build 
+
+script:
+  - python -m unittest tests/test_*
+
+notifications:
+  email: false
+
