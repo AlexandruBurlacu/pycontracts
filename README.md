@@ -11,4 +11,3 @@ It has absolutely no dependencies other than Python's standard library, so it is
 
 ### Roadmap
 - Publish it on PyPI
-- Add code coverage
