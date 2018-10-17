@@ -1,16 +1,16 @@
 import unittest
-from pycontracts import Contract
+from pycontracts import Contract, utils
 
 
 @Contract.pre_conditions({
     "All arguments should be positive":
-        lambda args: all(map(lambda x: 1 if x > 0 else 0, list(args.all_args.values())))
+        lambda args: utils.check_all(args.all_args, lambda arg: arg > 0)
 })
 @Contract.post_conditions({
-    "Return value should be positive": lambda ret: ret > 0
+    "Return value should be positive": lambda ret: ret[0] > 0 and ret[1] > 0
 })
-def untestable_function(x, y):
-    return - (x * x + y * y)
+def untestable_function(x, y, z, w):
+    return - (x * x + y * y), (z + w)
 
 
 class TestDisabledContracts(unittest.TestCase):
@@ -19,10 +19,10 @@ class TestDisabledContracts(unittest.TestCase):
         Contract.disable_all_tests()
 
     def test_not_failing_precondition_decorator_mixed(self):
-        self.assertEqual(untestable_function(2, y=-3), -13)
+        self.assertEqual(untestable_function(2, 3, z=4, w=-3), (-13, 1))
 
     def test_not_failing_prostcondition_decorator_mixed(self):
-        self.assertEqual(untestable_function(2, y=3), -13)
+        self.assertEqual(untestable_function(2, 3, z=4, w=-3), (-13, 1))
 
     def tearDown(self):
         Contract.enable_all_tests()

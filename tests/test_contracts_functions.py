@@ -1,9 +1,9 @@
 import unittest
-from pycontracts import Contract, exceptions
+from pycontracts import Contract, exceptions, utils
 
 @Contract.pre_conditions({
     "All arguments should be positive":
-        lambda args: all(map(lambda x: 1 if x > 0 else 0, list(args.all_args.values())))
+        lambda args: utils.check_all(args.all_args, lambda arg: arg > 0)
 })
 @Contract.post_conditions({
     "Return value should be positive": lambda ret: ret > 0
@@ -14,7 +14,7 @@ def testable_function(x, y):
 
 @Contract.pre_conditions({
     "All arguments should be positive":
-        lambda args: all(map(lambda x: 1 if x > 0 else 0, list(args.all_args.values())))
+        lambda args: utils.check_all(args.all_args, lambda arg: arg > 0)
 })
 @Contract.post_conditions({
     "Return value should be positive": lambda ret: ret > 0

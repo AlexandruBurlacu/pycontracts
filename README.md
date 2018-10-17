@@ -12,6 +12,6 @@ This library makes it easy to specify contracts, providing defensive programming
 It has absolutely no dependencies other than Python's standard library, so it is fully compatible with both Python 3.x and 2.x, and even PyPy.
 
 ### Roadmap
-- Publish it on PyPI
+- Add documentation
 - Enchance the traceback
-- Add an utils module with predicates to make definition of contracts easier
+- Publish it on PyPI
