@@ -23,8 +23,3 @@ def drop_args(args_dict, args_list):
             del args_dict[arg]
 
     return args_dict
-
-def compose(func_1, func_2):
-    def __inner(arg):
-        return func_1(func_2(arg))
-    return __inner
