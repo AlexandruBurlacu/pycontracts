@@ -11,3 +11,6 @@ It has absolutely no dependencies other than Python's standard library, so it is
 
 ### Roadmap
 - Publish it on PyPI
+- Enchance the traceback
+- Add an utils module with predicates to make definition of contracts easier
+- Add Arguments class to unify the access to both args and kwargs

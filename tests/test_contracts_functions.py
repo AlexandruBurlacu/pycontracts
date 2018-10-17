@@ -2,7 +2,9 @@ import unittest
 from pycontracts import Contract, exceptions
 
 @Contract.pre_conditions({
-    "All arguments should be positive": lambda args, kwargs: all(map(lambda x: 1 if x > 0 else 0, list(args) + list(kwargs.values())))
+    "All arguments should be positive":
+        lambda args, kwargs: all(map(lambda x: 1 if x > 0 else 0,
+                                        list(args) + list(kwargs.values())))
 })
 @Contract.post_conditions({
     "Return value should be positive": lambda ret: ret > 0
@@ -13,7 +15,9 @@ def testable_function(x, y):
 
 
 @Contract.pre_conditions({
-    "All arguments should be positive": lambda args, kwargs: all(map(lambda x: 1 if x > 0 else 0, list(args) + list(kwargs.values())))
+    "All arguments should be positive":
+        lambda args, kwargs: all(map(lambda x: 1 if x > 0 else 0,
+                                        list(args) + list(kwargs.values())))
 })
 @Contract.post_conditions({
     "Return value should be positive": lambda ret: ret > 0
@@ -35,19 +39,25 @@ class TestContract(unittest.TestCase):
 
 class TestFailingContracts(unittest.TestCase):
     def test_failing_precondition_decorator_args(self):
-        self.assertRaises(exceptions.PreconditionViolationError, lambda: untestable_function(2, -3))
+        self.assertRaises(exceptions.PreconditionViolationError,
+                            lambda: untestable_function(2, -3))
 
     def test_failing_postcondition_decorator_args(self):
-        self.assertRaises(exceptions.PostconditionViolationError, lambda: untestable_function(2, 3))
+        self.assertRaises(exceptions.PostconditionViolationError,
+                            lambda: untestable_function(2, 3))
 
     def test_failing_precondition_decorator_kwargs(self):
-        self.assertRaises(exceptions.PreconditionViolationError, lambda: untestable_function(y=2, x=-3))
+        self.assertRaises(exceptions.PreconditionViolationError,
+                            lambda: untestable_function(y=2, x=-3))
 
     def test_failing_prostcondition_decorator_kwargs(self):
-        self.assertRaises(exceptions.PostconditionViolationError, lambda: untestable_function(y=2, x=3))
+        self.assertRaises(exceptions.PostconditionViolationError,
+                            lambda: untestable_function(y=2, x=3))
 
     def test_failing_precondition_decorator_mixed(self):
-        self.assertRaises(exceptions.PreconditionViolationError, lambda: untestable_function(2, y=-3))
+        self.assertRaises(exceptions.PreconditionViolationError,
+                            lambda: untestable_function(2, y=-3))
 
     def test_failing_prostcondition_decorator_mixed(self):
-        self.assertRaises(exceptions.PostconditionViolationError, lambda: untestable_function(2, y=3))
+        self.assertRaises(exceptions.PostconditionViolationError,
+                            lambda: untestable_function(2, y=3))
