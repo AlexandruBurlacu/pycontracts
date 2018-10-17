@@ -12,7 +12,6 @@ def testable_function(x, y):
     return x * x + y * y
 
 
-
 @Contract.pre_conditions({
     "All arguments should be positive":
         lambda args: all(map(lambda x: 1 if x > 0 else 0, list(args.all_args.values())))
