@@ -1,3 +1,4 @@
+from copy import deepcopy
 
 class Arguments(object):
     def __init__(self, *args, **kwargs):
@@ -7,11 +8,16 @@ class Arguments(object):
         self.__unify_args()
         self.__unify_kwargs()
 
+        self.all_args = deepcopy(self.__dict__)
+
     def __unify_args(self):
         for idx, value in enumerate(self.__args):
             setattr(self, "arg_{}".format(idx), value)
+        
+        del self.__args
 
     def __unify_kwargs(self):
         for name, value in self.__kwargs.items():
-            print(type(name))
             setattr(self, name, value)
+
+        del self.__kwargs
