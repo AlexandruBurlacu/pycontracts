@@ -1,6 +1,6 @@
 # Python Contracts Library
 
-[![Build Status](https://travis-ci.org/AlexandruBurlacu/pycontracts.svg?branch=master)](https://travis-ci.org/AlexandruBurlacu/pycontracts)[![Coverage Status](https://coveralls.io/repos/github/AlexandruBurlacu/pycontracts/badge.svg?branch=master)](https://coveralls.io/github/AlexandruBurlacu/pycontracts?branch=master)
+[![Build Status](https://travis-ci.org/AlexandruBurlacu/pycontracts.svg?branch=master)](https://travis-ci.org/AlexandruBurlacu/pycontracts) [![Coverage Status](https://coveralls.io/repos/github/AlexandruBurlacu/pycontracts/badge.svg?branch=master)](https://coveralls.io/github/AlexandruBurlacu/pycontracts?branch=master)
 
 Python generally lacks type checking, and that's a problem, a very annoying one.
 That's why I decided to write this small library that enables easy integration of pre- and post- conditions checking of any functions and methods.
