@@ -1,15 +1,11 @@
 import unittest
-from pycontracts import Contract, exceptions
-
-def remove_fst(dictionary):
-    del dictionary["arg__0"]
-    return dictionary
+from pycontracts import Contract, exceptions, utils
 
 class TestClassBase(object):
 
     @Contract.pre_conditions({
         "All arguments should be positive":
-            lambda args: all(map(lambda x: 1 if x > 0 else 0, list(remove_fst(args.all_args).values())))
+            lambda args: utils.check_all(utils.drop_fst_arg(args.all_args), lambda arg: arg > 0)
     })
     def query(self, arg1, arg2):
          return arg1 * arg2
@@ -60,7 +56,7 @@ class TestFailingContractClass(unittest.TestCase):
         self.assertRaises(exceptions.PreconditionViolationError,
                             lambda: self.base_class_instance.query(arg2=2, arg1=-3))
 
-    def test_failing_prostcondition_decorator_kwargs(self):
+    def test_failing_postcondition_decorator_kwargs(self):
         self.assertRaises(exceptions.PostconditionViolationError,
                             lambda: self.child_class_instance.query(arg2=2, arg1=3))
 
@@ -68,7 +64,7 @@ class TestFailingContractClass(unittest.TestCase):
         self.assertRaises(exceptions.PreconditionViolationError,
                             lambda: self.base_class_instance.query(2, arg2=-3))
 
-    def test_failing_prostcondition_decorator_mixed(self):
+    def test_failing_postcondition_decorator_mixed(self):
         self.assertRaises(exceptions.PostconditionViolationError,
                             lambda: self.child_class_instance.query(2, arg2=3))
 
