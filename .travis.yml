@@ -15,7 +15,7 @@ install:
   - python setup.py build
   - pip install coveralls 
 
-script: coverage run --source pycontracts -m unittest tests/test_*
+script: coverage run --source pycontracts -m unittest discover tests
 
 after_success: coveralls
 
