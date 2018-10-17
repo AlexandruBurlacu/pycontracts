@@ -18,7 +18,7 @@ class TestClassChild(TestClassBase):
         "Return argument should be 0": lambda ret: ret == 0
     })
     def query(self, arg1, arg2):
-         return arg1 * arg2 + super().query(arg1, arg2)
+         return arg1 * arg2 + super(TestClassChild, self).query(arg1, arg2)
 
 class TestContractSimpleClass(unittest.TestCase):
 
