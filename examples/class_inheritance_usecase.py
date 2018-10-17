@@ -2,11 +2,14 @@ from __future__ import print_function
 
 from pycontracts import Contract
 
+def remove_fst(dictionary):
+    del dictionary["arg__0"]
+    return dictionary
 
 class TestClassBase(object):
 
     @Contract.pre_conditions({
-        "Both arguments should be positive": lambda args, kwargs: args[1] > 0 and args[2] > 0
+        "Both arguments should be positive": lambda args: args.arg__1 > 0 and args.arg__2 > 0
     })
     def query(self, arg1, arg2):
          return arg1 * arg2
@@ -24,7 +27,7 @@ class TestClassChild(TestClassBase):
         "Return argument should be 0": lambda ret: ret == 0
     })
     def query(self, arg1, arg2):
-         return arg1 * arg2 - super().query(arg1, arg2)
+         return arg1 * arg2 - super(TestClassChild, self).query(arg1, arg2)
 
 
 if __name__ == "__main__":

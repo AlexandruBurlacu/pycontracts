@@ -6,7 +6,7 @@ from pycontracts import Contract
 class TestClass(object):
 
     @Contract.pre_conditions({
-        "Both arguments should be positive": lambda args, kwargs: args[1] > 0 and args[2] > 0
+        "Both arguments should be positive": lambda args: args.arg__1 > 0 and args.arg__2 > 0
     })
     def query(self, arg1, arg2):
          return arg1 * arg2

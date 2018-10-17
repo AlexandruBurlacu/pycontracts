@@ -1,11 +1,15 @@
 import unittest
 from pycontracts import Contract, exceptions
 
+def remove_fst(dictionary):
+    del dictionary["arg__0"]
+    return dictionary
+
 class TestClassBase(object):
 
     @Contract.pre_conditions({
         "All arguments should be positive":
-            lambda args: all(map(lambda x: 1 if x > 0 else 0, list(args.all_args.values())))
+            lambda args: all(map(lambda x: 1 if x > 0 else 0, list(remove_fst(args.all_args).values())))
     })
     def query(self, arg1, arg2):
          return arg1 * arg2
