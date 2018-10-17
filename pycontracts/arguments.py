@@ -9,10 +9,11 @@ class Arguments(object):
         self.__unify_kwargs()
 
         self.all_args = deepcopy(self.__dict__)
+        print(self.all_args)
 
     def __unify_args(self):
         for idx, value in enumerate(self.__args):
-            setattr(self, "arg_{}".format(idx), value)
+            setattr(self, "arg__{}".format(idx), value)
         
         del self.__args
 

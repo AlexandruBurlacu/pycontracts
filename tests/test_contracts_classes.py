@@ -5,8 +5,7 @@ class TestClassBase(object):
 
     @Contract.pre_conditions({
         "All arguments should be positive":
-            lambda args, kwargs: all(map(lambda x: 1 if x > 0 else 0,
-                                            list(args[1:]) + list(kwargs.values())))
+            lambda args: all(map(lambda x: 1 if x > 0 else 0, list(args.all_args.values())))
     })
     def query(self, arg1, arg2):
          return arg1 * arg2

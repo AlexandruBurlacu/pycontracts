@@ -1,4 +1,5 @@
 from .exceptions import PreconditionViolationError, PostconditionViolationError
+from .arguments import Arguments
 from functools import wraps
 
 class Contract(object):
@@ -10,9 +11,10 @@ class Contract(object):
         def wrapper(func):
             @wraps(func)
             def __inner(*args, **kwargs):
+                func_args = Arguments(*args, **kwargs)
                 if cls.tests_enabled:
                     for condition, predicate in conditions_dict.items():
-                        if not predicate(args, kwargs):
+                        if not predicate(func_args):
                             raise PreconditionViolationError(args, kwargs, condition)
                 return func(*args, **kwargs)
             return __inner
