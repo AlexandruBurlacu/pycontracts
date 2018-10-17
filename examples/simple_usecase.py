@@ -13,4 +13,7 @@ def simple_usecase(a):
 
 
 if __name__ == "__main__":
+    Contract.disable_all_tests()
     simple_usecase(-10)
+    Contract.enable_all_tests()
+    simple_usecase(10)

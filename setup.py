@@ -5,7 +5,7 @@ with open("README.md") as f_ptr:
 
 setuptools.setup(
     name="pycontracts",
-    version="0.1.1",
+    version="0.1.3",
     author="Alex Burlacu",
     author_email="alexburlacu96@gmail.com",
     long_description=long_description,
