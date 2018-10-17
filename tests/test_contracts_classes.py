@@ -56,7 +56,7 @@ class TestFailingContractClass(unittest.TestCase):
         self.assertRaises(exceptions.PreconditionViolationError,
                             lambda: self.base_class_instance.query(arg2=2, arg1=-3))
 
-    def test_failing_prostcondition_decorator_kwargs(self):
+    def test_failing_postcondition_decorator_kwargs(self):
         self.assertRaises(exceptions.PostconditionViolationError,
                             lambda: self.child_class_instance.query(arg2=2, arg1=3))
 
@@ -64,7 +64,7 @@ class TestFailingContractClass(unittest.TestCase):
         self.assertRaises(exceptions.PreconditionViolationError,
                             lambda: self.base_class_instance.query(2, arg2=-3))
 
-    def test_failing_prostcondition_decorator_mixed(self):
+    def test_failing_postcondition_decorator_mixed(self):
         self.assertRaises(exceptions.PostconditionViolationError,
                             lambda: self.child_class_instance.query(2, arg2=3))
 

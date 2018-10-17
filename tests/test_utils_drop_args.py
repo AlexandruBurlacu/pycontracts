@@ -16,8 +16,20 @@ def untestable_function(x, y, z, w):
 
 class TestUtilsDropArgs(unittest.TestCase):
 
+    def test_successful_precondition_decorator_args(self):
+        self.assertEqual(untestable_function(2, 3, 4, -3), (-13, 1))
+
+    def test_successful_postcondition_decorator_args(self):
+        self.assertEqual(untestable_function(2, 3, 4, -3), (-13, 1))
+
+    def test_successful_precondition_decorator_kwargs(self):
+        self.assertEqual(untestable_function(x=2, y=3, z=4, w=-3), (-13, 1))
+
+    def test_successful_postcondition_decorator_kwargs(self):
+        self.assertEqual(untestable_function(x=2, y=3, z=4, w=-3), (-13, 1))
+
     def test_successful_precondition_decorator_mixed(self):
         self.assertEqual(untestable_function(2, 3, z=4, w=-3), (-13, 1))
 
-    def test_successful_prostcondition_decorator_mixed(self):
+    def test_successful_postcondition_decorator_mixed(self):
         self.assertEqual(untestable_function(2, 3, z=4, w=-3), (-13, 1))

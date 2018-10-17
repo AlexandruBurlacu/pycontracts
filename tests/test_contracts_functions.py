@@ -47,14 +47,14 @@ class TestFailingContracts(unittest.TestCase):
         self.assertRaises(exceptions.PreconditionViolationError,
                             lambda: untestable_function(y=2, x=-3))
 
-    def test_failing_prostcondition_decorator_kwargs(self):
+    def test_failing_postcondition_decorator_kwargs(self):
         self.assertRaises(exceptions.PostconditionViolationError,
                             lambda: untestable_function(y=2, x=3))
 
-    def test_failing_precondition_decorator_mixed(self):
+    def test_failing_pecondition_decorator_mixed(self):
         self.assertRaises(exceptions.PreconditionViolationError,
                             lambda: untestable_function(2, y=-3))
 
-    def test_failing_prostcondition_decorator_mixed(self):
+    def test_failing_postcondition_decorator_mixed(self):
         self.assertRaises(exceptions.PostconditionViolationError,
                             lambda: untestable_function(2, y=3))

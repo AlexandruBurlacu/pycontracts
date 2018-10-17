@@ -21,7 +21,7 @@ class TestDisabledContracts(unittest.TestCase):
     def test_not_failing_precondition_decorator_mixed(self):
         self.assertEqual(untestable_function(2, 3, z=4, w=-3), (-13, 1))
 
-    def test_not_failing_prostcondition_decorator_mixed(self):
+    def test_not_failing_postcondition_decorator_mixed(self):
         self.assertEqual(untestable_function(2, 3, z=4, w=-3), (-13, 1))
 
     def tearDown(self):
