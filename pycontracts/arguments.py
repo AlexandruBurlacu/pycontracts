@@ -1,6 +1,13 @@
 from copy import deepcopy
 
 class Arguments(object):
+    """
+    Unifies the access to both keywords and simple/positional arguments.
+
+    Takes the arguments and keyword arguments and makes them all available through dot notation.
+    One can access simple/positional arguments as ``args.arg__0`` for the first argument,
+    or generally ``args.arg__n``.
+    """
     def __init__(self, *args, **kwargs):
         self.__args = args
         self.__kwargs = kwargs
