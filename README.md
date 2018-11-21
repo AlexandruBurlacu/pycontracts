@@ -1,4 +1,4 @@
-# Python Contracts Library
+# PyContracts: A decorator-based Python contracts library
 
 [![Build Status](https://travis-ci.org/AlexandruBurlacu/pycontracts.svg?branch=master)](https://travis-ci.org/AlexandruBurlacu/pycontracts) [![Coverage Status](https://coveralls.io/repos/github/AlexandruBurlacu/pycontracts/badge.svg?branch=master)](https://coveralls.io/github/AlexandruBurlacu/pycontracts?branch=master)
 
@@ -12,6 +12,5 @@ This library makes it easy to specify contracts, providing defensive programming
 It has absolutely no dependencies other than Python's standard library, so it is fully compatible with both Python 3.x and 2.x, and even PyPy.
 
 ### Roadmap
-- Add documentation
 - Enchance the traceback
 - Publish it on PyPI
