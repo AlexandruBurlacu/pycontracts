@@ -3,6 +3,13 @@ from .arguments import Arguments
 from functools import wraps
 
 class Contract(object):
+    """
+    Specifies through class methods the pre- and post- conditions of the contract.
+
+    All members are classmethods, that is, to access them one doesn't need to instatiate the ``Contract`` class,
+    only to apply it as a decorator, like this
+    ``@Contract.pre_conditions({ <your contracts here, in the form contract_as_a_string: predicate_to_verify_the_contract/> })``.
+    """
 
     tests_enabled = True
 
